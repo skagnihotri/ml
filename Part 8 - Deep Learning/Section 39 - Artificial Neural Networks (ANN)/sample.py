@@ -41,3 +41,27 @@ X_test = sc_X.transform(X_test)
 
 #importing lib and packages
 import keras
+from keras.layers import Dense
+from keras.models import Sequential
+
+#initialising
+classifier = Sequential()
+# adding input layer and first hidden layer
+classifier.add(Dense(units = 6, kernel_initializer = 'uniform', activation = 'relu', input_dim = 11))
+#adding second hidden layer
+classifier.add(Dense(units=6,kernel_initializer='uniform',activation='relu'))
+#adding output layer
+classifier.add(Dense(units=1,kernel_initializer='uniform',activation='sigmoid'))
+#compiling the ANN
+classifier.compile(optimizer='adam',loss='binary_crossentropy',metrics=['accuracy'])
+
+#fitting the ANN model
+classifier.fit(X_train,y_train,batch_size=10,epochs=100)
+
+#predicting 
+y_pred = classifier.predict(X_test)
+y_pred = (y_pred>=0.5)
+
+#confusion matrix
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_test,y_pred)
