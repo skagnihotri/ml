@@ -6,7 +6,7 @@ from keras.layers import Conv2D ,MaxPooling2D ,Flatten ,Dense
 
 #building cnn
 
-#initialixing
+#initialising
 classifier = Sequential()
 
 #1.convolution
@@ -23,7 +23,7 @@ classifier.add(Dense(units= 128 ,activation= 'relu'))
 classifier.add(Dense(units= 1 ,activation= 'sigmoid'))
 
 #compiling cnn
-classifier.compile(optimizer= 'adam' ,loss= 'binary_crossentropy' ,metrics= ['accuracy'])
+classimatefier.compile(optimizer= 'adam' ,loss= 'binary_crossentropy' ,metrics= ['accuracy'])
 
 #fitting cnn
 from keras.preprocessing.image import ImageDataGenerator
