@@ -62,7 +62,7 @@ regressor.add(Dense(units= 1))
 regressor.compile(optimizer= 'adam', loss= 'mean_squared_error')
 
 #fitting rnn
-regressor.fit(X_train, y_train, batch_size= 32, epochs= 100)
+regressor.fit(X_train, y_train, batch_size= 10, epochs= 100)
 
 #getting real stock price
 dataset_test = pd.read_csv('Google_Stock_Price_Test.csv')
@@ -114,14 +114,14 @@ def built_regressor(optimizer):
     regressor.compile(optimizer= optimizer, loss= 'mean_squared_error')
     return regressor
 regressor = KerasRegressor(build_fn= built_regressor)
-parameters = {'batch_size': [10, 32],
-              'epochs': [100,200],
-              'optimizer': ['adam', 'rmsprop']}
+parameters = {'batch_size': [10],
+              'epochs': [100],
+              'optimizer': ['adam']}
 grid_search = GridSearchCV(estimator= regressor,
                            param_grid= parameters,
                            scoring= 'neg_mean_squared_error',
                            #n_jobs= -1,
-                           cv= 10)
+                           cv= 3)
 grid_search = grid_search.fit(X_train,y_train)
 best_parameters = grid_search.best_params_
 best_accuracy = grid_search.best_score_
