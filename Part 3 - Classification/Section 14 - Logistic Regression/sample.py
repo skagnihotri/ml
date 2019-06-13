@@ -39,6 +39,10 @@ y_pred = classifier.predict(X_test)
 from sklearn.metrics import confusion_matrix
 cm = confusion_matrix(y_test,y_pred)
 
+from sklearn.metrics import classification_report
+score = classification_report(y_test, y_pred)
+print(score)
+
 # Visualising the Training set results
 from matplotlib.colors import ListedColormap
 X_set, y_set = X_train, y_train
